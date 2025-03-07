@@ -26,6 +26,8 @@ public class WeatherApiTest {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = 8089;
 
+        RestAssured.filters(new io.qameta.allure.restassured.AllureRestAssured());
+
         stubFor(get(urlPathEqualTo("/v1/current.json"))
                 .withQueryParam("key", equalTo(API_KEY))
                 .withQueryParam("q", equalTo("Moscow"))

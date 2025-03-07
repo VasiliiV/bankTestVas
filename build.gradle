@@ -22,6 +22,7 @@ dependencies {
 
     testImplementation 'io.qameta.allure:allure-testng:2.27.0'
     testImplementation 'io.qameta.allure:allure-rest-assured:2.27.0'
+    implementation 'io.qameta.allure:allure-rest-assured:2.29.0'
 }
 
 test {
