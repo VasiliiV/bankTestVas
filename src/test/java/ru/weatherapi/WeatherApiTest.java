@@ -26,7 +26,6 @@ public class WeatherApiTest {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = 8089;
 
-        // Mock responses for cities
         stubFor(get(urlPathEqualTo("/v1/current.json"))
                 .withQueryParam("key", equalTo(API_KEY))
                 .withQueryParam("q", equalTo("Moscow"))
@@ -47,14 +46,19 @@ public class WeatherApiTest {
                 .withQueryParam("q", equalTo("New York"))
                 .willReturn(okJson("{ \"location\": { \"name\": \"New York\" }, \"current\": { \"temp_c\": 8 }}")));
 
-        // Mock errors
         stubFor(get(urlPathEqualTo("/v1/current.json"))
                 .withQueryParam("q", equalTo("InvalidCity"))
-                .willReturn(aResponse().withStatus(400).withBody("{ \"error\": { \"message\": \"No matching location found.\" }}")));
+                .willReturn(aResponse()
+                        .withStatus(400)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody("{ \"error\": { \"message\": \"No matching location found.\" }}")));
 
         stubFor(get(urlPathEqualTo("/v1/current.json"))
                 .withQueryParam("key", equalTo("wrongkey"))
-                .willReturn(aResponse().withStatus(403).withBody("{ \"error\": { \"message\": \"API key invalid.\" }}")));
+                .willReturn(aResponse()
+                        .withStatus(403)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody("{ \"error\": { \"message\": \"API key invalid.\" }}")));
     }
 
     @AfterClass
