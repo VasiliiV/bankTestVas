@@ -3,11 +3,11 @@ package ru.bank.products;
 public class Deposit extends BankProduct {
     private boolean isClosed = false;
 
-    public Deposit(String currency, double balance, String name) {
+    public Deposit(String currency, BigDecimal balance, String name) {
         super(currency, balance, name);
     }
 
-    public void deposit(double amount) {
+    public void deposit(BigDecimal amount) {
         if (!isClosed) {
             balance += amount;
         } else {
