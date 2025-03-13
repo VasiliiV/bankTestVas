@@ -1,23 +1,23 @@
 package ru.bank.products;
 
 public class CreditCard extends DebitCard {
-    private double interestRate;
+    private BigDecimal interestRate;
 
-    public CreditCard(String currency, double balance, String name, double interestRate) {
+    public CreditCard(String currency, BigDecimal balance, String name, BigDecimal interestRate) {
         super(currency, balance, name);
         this.interestRate = interestRate;
     }
 
-    public double getDebt() {
+    public BigDecimal getDebt() {
         return balance < 0 ? -balance : 0;
     }
 
-    public double getInterestRate() {
+    public BigDecimal getInterestRate() {
         return interestRate;
     }
 
     @Override
-    public void withdraw(double amount) {
+    public void withdraw(BigDecimal amount) {
         balance -= amount; // можно уйти в минус
     }
 }
