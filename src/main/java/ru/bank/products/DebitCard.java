@@ -2,15 +2,15 @@ package ru.bank.products;
 
 public class DebitCard extends BankProduct {
 
-    public DebitCard(String currency, double balance, String name) {
+    public DebitCard(String currency, BigDecimal balance, String name) {
         super(currency, balance, name);
     }
 
-    public void deposit(double amount) {
+    public void deposit(BigDecimal amount) {
         balance += amount;
     }
 
-    public void withdraw(double amount) {
+    public void withdraw(BigDecimal amount) {
         if (balance >= amount) {
             balance -= amount;
         } else {
