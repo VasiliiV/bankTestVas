@@ -5,13 +5,13 @@ public abstract class BankProduct {
     protected double balance;
     protected String name;
 
-    public BankProduct(String currency, double balance, String name) {
+    public BankProduct(String currency, BigDecimal balance, String name) {
         this.currency = currency;
         this.balance = balance;
         this.name = name;
     }
 
-    public double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
