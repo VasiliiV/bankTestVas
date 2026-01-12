@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bank Demo Mobile</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="phone">
+      <header class="phone__header">
+        <h1>Bank Demo</h1>
+        <p>Мобильный банк — демо стенд</p>
+      </header>
+
+      <section class="card" aria-labelledby="login-title">
+        <h2 id="login-title">Вход</h2>
+        <label class="field">
+          Номер телефона
+          <input data-testid="login-phone" type="tel" placeholder="+7 999 000-00-00" />
+        </label>
+        <label class="field">
+          ПИН-код
+          <input data-testid="login-pin" type="password" placeholder="••••" />
+        </label>
+        <button data-testid="login-submit" class="primary">Продолжить</button>
+        <p class="hint" data-testid="login-hint">Введите данные для входа.</p>
+      </section>
+
+      <section class="card">
+        <h2>Быстрые действия</h2>
+        <div class="grid">
+          <button>Перевод</button>
+          <button>Оплата</button>
+          <button>История</button>
+          <button>Поддержка</button>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const phone = document.querySelector('[data-testid="login-phone"]');
+      const pin = document.querySelector('[data-testid="login-pin"]');
+      const hint = document.querySelector('[data-testid="login-hint"]');
+      document
+        .querySelector('[data-testid="login-submit"]')
+        .addEventListener('click', () => {
+          const phoneValue = phone.value.trim();
+          const pinValue = pin.value.trim();
+          if (phoneValue && pinValue) {
+            hint.textContent = `Добро пожаловать, ${phoneValue}!`;
+          } else {
+            hint.textContent = 'Заполните номер и ПИН-код.';
+          }
+        });
+    </script>
+  </body>
+</html>
