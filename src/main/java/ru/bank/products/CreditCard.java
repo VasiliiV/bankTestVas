@@ -1,5 +1,7 @@
 package ru.bank.products;
 
+import java.math.BigDecimal;
+
 public class CreditCard extends DebitCard {
     private BigDecimal interestRate;
 
@@ -9,7 +11,7 @@ public class CreditCard extends DebitCard {
     }
 
     public BigDecimal getDebt() {
-        return balance < 0 ? -balance : 0;
+        return balance.compareTo(BigDecimal.ZERO) < 0 ? balance.negate() : BigDecimal.ZERO;
     }
 
     public BigDecimal getInterestRate() {
@@ -18,6 +20,6 @@ public class CreditCard extends DebitCard {
 
     @Override
     public void withdraw(BigDecimal amount) {
-        balance -= amount; // можно уйти в минус
+        balance = balance.subtract(amount); // можно уйти в минус
     }
 }

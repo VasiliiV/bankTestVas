@@ -1,5 +1,7 @@
 package ru.bank.products;
 
+import java.math.BigDecimal;
+
 public class Deposit extends BankProduct {
     private boolean isClosed = false;
 
@@ -9,7 +11,7 @@ public class Deposit extends BankProduct {
 
     public void deposit(BigDecimal amount) {
         if (!isClosed) {
-            balance += amount;
+            balance = balance.add(amount);
         } else {
             throw new IllegalStateException("Вклад закрыт");
         }
@@ -17,7 +19,7 @@ public class Deposit extends BankProduct {
 
     public void close() {
         isClosed = true;
-        balance = 0;
+        balance = BigDecimal.ZERO;
     }
 
     public boolean isClosed() {

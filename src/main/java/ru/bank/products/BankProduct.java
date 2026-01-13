@@ -1,8 +1,10 @@
 package ru.bank.products;
 
+import java.math.BigDecimal;
+
 public abstract class BankProduct {
     protected String currency;
-    protected double balance;
+    protected BigDecimal balance;
     protected String name;
 
     public BankProduct(String currency, BigDecimal balance, String name) {
